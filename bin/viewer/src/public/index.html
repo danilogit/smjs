@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+<head>
+    <title></title>
+    <script type="text/javascript" src="http://visjs.org/dist/vis.js"></script>
+    <link href="http://visjs.org/dist/vis-network.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <style type="text/css">
+        #network {
+            width: 100%;
+            height: 800px;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="network"></div>
+    <script type="text/javascript">
+
+        fetch('/api/v1/view')
+            .then(function (response) {
+                response.json().then(function (json) {
+                    // create a network
+                    var container = document.getElementById('network');
+                    var nodes = new vis.DataSet(json.nodes);
+                    var edges = new vis.DataSet(json.edges);
+
+                    var data = { nodes, edges };
+                    var options = {
+                        nodes: {
+                            shape: 'box',
+                            margin: 10
+                        },
+                        physics: {
+                            enabled: false
+                        },
+                        "edges": {
+                            "smooth": {
+                                "type": "diagonalCross",
+                                "forceDirection": "none",
+                                "roundness": 0.35
+                            }
+                        },
+                    };
+                    var network = new vis.Network(container, data, options);
+                    nodes.update([{ id: 'start', color: { background: '#fff' } }]);
+                });
+            });
+
+    </script>
+
+
+</body>
+
+</html>
