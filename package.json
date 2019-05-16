@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publish": "npm version minor && npm publish --access=public"
+    "publish": "npm version minor"
   },
   "bugs": {
     "url": "https://github.com/danilogit/smjs/issues"
