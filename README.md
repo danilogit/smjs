@@ -87,6 +87,7 @@ smjs run states.json
 ```
 smjs view states.json
 ```
+![Diagram](examples/example.png)
 
 ## Built-In Tasks
 
