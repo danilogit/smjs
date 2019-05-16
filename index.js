@@ -4,8 +4,9 @@ const fs = require('fs');
 const logSymbols = require('log-symbols');
 const path = require('path');
 const boxen = require('boxen');
+const pkjson = require('./package.json');
 
-class StateMachine {
+class Smjs {
 
     constructor(config) {
         this.stateHistory = [];
@@ -206,7 +207,7 @@ class StateMachine {
 
     run() {
         this.startedAt = new Date().getTime();
-        this.log(boxen('State Machine v1.0\nTasks dir: ' + this.config.tasksDir));
+        this.log(boxen(`${pkjson.alias} v${pkjson.version}\nTasks dir: ${this.config.tasksDir}`));
         this.log(`┏ Start`);
         return this.exec(this.getStateById(this.config.initialState));
     }
@@ -214,4 +215,4 @@ class StateMachine {
     
 }
 
-module.exports = StateMachine;
+module.exports = Smjs;

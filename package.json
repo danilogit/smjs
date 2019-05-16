@@ -1,6 +1,7 @@
 {
   "name": "@danilolima/smjs",
-  "version": "1.0.1",
+  "alias": "SMJS",
+  "version": "0.1.0-beta",
   "description": "",
   "main": "index.js",
   "bin": {
