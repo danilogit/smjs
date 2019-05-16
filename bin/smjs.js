@@ -5,9 +5,10 @@ const path = require('path');
 const program = require('commander');
 const colors = require('colors');
 const smViewer = require('./viewer/src');
+const pkjson = require('../package.json');
 
 program
-    .version('1.0.0')
+    .version(pkjson.version)
     .command('run <definitionFile>')
     .action(function (definitionFile, cmd) {
         const filePath = path.resolve(definitionFile);
