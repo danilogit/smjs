@@ -6,11 +6,11 @@
 npm install @danilolima/smjs -g
 ```
 
-## States Example
+## States Example (states.json)
 ```json
 {
     "name": "states-example",
-    "initialState": "task-1",
+    "initialState": "fetch-random-user",
     "parameters": {
         "NAME": "Danilo"
     },
@@ -19,55 +19,70 @@ npm install @danilolima/smjs -g
     "states": [
         {
             "type": "Task",
-            "id": "task-1",
-            "nextState": "task-2"
+            "id": "fetch-random-user",
+            "task": "httpRequest",
+            "httpOptions": {
+                "method": "get",
+                "dataType": "json",
+                "url": "https://randomuser.me/api/"
+            },
+            "nextState": "print-value",
+            "nextStateError": "print-state"
         },
         {
             "type": "Task",
-            "id": "task-2",
-            "nextState": "task-3"
+            "id": "print-value",
+            "task": "printValue",
+            "variablePath": "$.result.data.results[0].dob.age",
+            "nextState": "is-over-50"
         },
         {
             "type": "Task",
-            "id": "task-3",
+            "id": "count-retries",
             "task": "countState",
-            "nextState": "choice-1"
+            "nextState": "wait-and-try-another-user"
         },
         {
             "type": "Choice",
-            "id": "choice-1",
+            "id": "is-over-50",
             "choices": [
                 {
                     "variablePath": "$.countRetries",
                     "condition": "equals",
-                    "expect": 4,
+                    "expect": 10,
                     "nextState": "max-retries-reached",
                     "label": "maxRetries"
                 },
                 {
-                    "variablePath": "$.result",
-                    "condition": "countGte",
-                    "expect": 2,
-                    "nextState": "task-2"
+                    "variablePath": "$.result.data.results[0].dob.age",
+                    "condition": "lessThan",
+                    "expect": 50,
+                    "nextState": "count-retries"
                 },
                 {
-                    "variablePath": "$.result",
-                    "condition": "countEquals",
-                    "expect": 0,
+                    "variablePath": "$.result.data.results[0].dob.age",
+                    "condition": "greaterThanOrEqual",
+                    "expect": 50,
                     "nextState": "finish"
                 }
             ]
         },
         {
             "type": "Wait",
-            "id": "wait-1",
-            "nextState": "finish",
+            "id": "wait-and-try-another-user",
+            "nextState": "fetch-random-user",
             "timeout": 1000
         },
         {
             "type": "Task",
             "id": "max-retries-reached",
-            "nextState": "wait-1"
+            "nextState": "finish"
+        },
+        {
+            "type": "Task",
+            "id": "print-state",
+            "task": "printState",
+            "nextState": "finish"
         },
         {
             "type": "Task",
