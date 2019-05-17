@@ -161,6 +161,27 @@ class Smjs {
                     this.log(`(${choice.condition} Expect ${choice.expect}, got ${value.length})`, false);
                     return true;
                 }
+            },
+            lessThanOrEqual: (choice) => {
+                const value = jp.value(prevState, choice.variablePath);
+                if (value <= choice.expect) {
+                    this.log(`(${choice.condition} Expect ${choice.expect}, got ${value})`, false);
+                    return true;
+                }
+            },
+            greaterThanOrEqual: (choice) => {
+                const value = jp.value(prevState, choice.variablePath);
+                if (value >= choice.expect) {
+                    this.log(`(${choice.condition} Expect ${choice.expect}, got ${value})`, false);
+                    return true;
+                }
+            },
+            lessThan: (choice) => {
+                const value = jp.value(prevState, choice.variablePath);
+                if (value < choice.expect) {
+                    this.log(`(${choice.condition} Expect ${choice.expect}, got ${value})`, false);
+                    return true;
+                }
             }
         }
 
