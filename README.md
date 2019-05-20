@@ -97,6 +97,8 @@ npm install @danilolima/smjs -g
 ```
 smjs run states.json
 ```
+![ExampleConsole](examples/example-console.png)
+
 ### Visualizing
 
 ```
