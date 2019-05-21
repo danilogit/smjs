@@ -16,11 +16,11 @@ const generateVis = (statesDefiniton) => {
 
     for (const currentState of statesDefiniton) {
         if (currentState.type === 'Task' || currentState.type === 'Pass') {
-            nodes.push({ id: currentState.id, label: currentState.id })
+            nodes.push({ id: currentState.id, label: currentState.id, title: currentState.comment })
         } else if (currentState.type === 'Choice') {
-            nodes.push({ id: currentState.id, label: currentState.id, color: 'rgb(255,168,7)', shape: 'diamond' })
+            nodes.push({ id: currentState.id, label: currentState.id, title: currentState.comment, color: 'rgb(255,168,7)', shape: 'diamond' })
         } else if (currentState.type === 'Wait') {
-            nodes.push({ id: currentState.id, label: `${currentState.id} (${currentState.timeout}ms)`, shape: 'image', image: '/images/clock-sand.svg' })
+            nodes.push({ id: currentState.id, label: `${currentState.id} (${currentState.timeout}ms)`, title: currentState.comment, shape: 'image', image: '/images/clock-sand.svg' })
         }
     }
 

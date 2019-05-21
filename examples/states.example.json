@@ -10,6 +10,7 @@
         {
             "type": "Task",
             "id": "fetch-random-user",
+            "comment": "Fetch a random user from URL",
             "task": "httpRequest",
             "httpOptions": {
                 "method": "get",

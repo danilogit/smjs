@@ -37,6 +37,7 @@
                         physics: {
                             enabled: false
                         },
+                        interaction:{hover:true},
                         "edges": {
                             "smooth": {
                                 "type": "diagonalCross",
@@ -46,7 +47,7 @@
                         },
                     };
                     var network = new vis.Network(container, data, options);
-                    nodes.update([{ id: 'start', color: { background: '#fff' } }]);
+                    nodes.update([{ id: 'start', color: { background: '#fff' } }]);                    
                 });
             });
 

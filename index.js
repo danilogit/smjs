@@ -34,10 +34,10 @@ class Smjs {
         let taskPathDefault = path.dirname(__filename) + `/tasks/${taskName}.js`;
         let taskPath = `${this.config.tasksDir}/${taskName}.js`;
 
-        if (fs.existsSync(taskPathDefault)) {
-            task = require(taskPathDefault);
-        } else if (fs.existsSync(taskPath)) {
+        if (fs.existsSync(taskPath)) {
             task = require(taskPath);
+        } else if (fs.existsSync(taskPathDefault)) {
+            task = require(taskPathDefault);
         } else {
             throw new Error(`Task '${taskName}' not found.`);
         }
