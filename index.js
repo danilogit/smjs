@@ -162,6 +162,13 @@ class Smjs {
                     return true;
                 }
             },
+            countGt: (choice) => {
+                const value = jp.query(prevState, choice.variablePath);
+                if (value.length > choice.expect) {
+                    this.log(`(${choice.condition} Expect ${choice.expect}, got ${value.length})`, false);
+                    return true;
+                }
+            },
             lessThanOrEqual: (choice) => {
                 const value = jp.value(prevState, choice.variablePath);
                 if (value <= choice.expect) {

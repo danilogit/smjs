@@ -1,7 +1,7 @@
 {
   "name": "@danilolima/smjs",
   "alias": "SMJS",
-  "version": "0.1.3-beta",
+  "version": "0.1.4-beta",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -19,6 +19,11 @@
     "type": "git",
     "url": "https://github.com/danilogit/smjs"
   },
+  "tags": [
+      "automation",
+      "workflow",
+      "state-machine"
+  ],
   "author": "Danilo Lima",
   "license": "MIT",
   "dependencies": {
