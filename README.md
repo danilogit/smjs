@@ -1,5 +1,24 @@
 # smjs
----
+
+
+## Summary
+1. Installation
+2. States Example
+3. Running
+ - CLI Command
+ - Class usage
+4. Viewing the states flow
+5. State definition
+6. Task definition
+7. Choices
+8. Parameters
+9. Built-In Tasks
+ - countState
+ - execFile
+ - httpRequest
+ - printState
+ - printValue
+ - wait 
 
 ## Installation
 ```
