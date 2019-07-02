@@ -1,0 +1,65 @@
+version: 0.1.4-beta
+name: states-example
+initialState: fetch-random-user
+parameters:
+  NAME: Danilo
+tasksDir: ./tasks
+verbose: true
+states:
+  - type: Task
+    id: fetch-random-user
+    comment: Fetch a random user from URL
+    task: httpRequest
+    httpOptions:
+      method: get
+      dataType: json
+      url: 'https://randomuser.me/api/'
+    nextState: write-log
+    nextStateError: print-state
+  - type: Task
+    id: print-value
+    task: printValue
+    variablePath: '$.result.data.results[0].dob.age'
+    nextState: is-over-50
+  - type: Task
+    id: count-retries
+    task: countState
+    nextState: wait-and-try-another-user
+  - type: Choice
+    id: is-over-50
+    choices:
+      - variablePath: $.countRetries
+        condition: equals
+        expect: 10
+        nextState: max-retries-reached
+        label: maxRetries
+      - variablePath: '$.result.data.results[0].dob.age'
+        condition: lessThan
+        expect: 50
+        nextState: count-retries
+      - variablePath: '$.result.data.results[0].dob.age'
+        condition: greaterThanOrEqual
+        expect: 50
+        nextState: finish
+  - type: Task
+    id: write-log
+    task: writeToFile
+    nextState: print-value
+    variablePath: $.result.data
+    filename: ./write-log.txt
+    timestamp: true
+  - type: Wait
+    id: wait-and-try-another-user
+    nextState: fetch-random-user
+    timeout: 1000
+  - type: Task
+    id: max-retries-reached
+    nextState: finish
+  - type: Task
+    id: print-state
+    task: printState
+    nextState: finish
+  - type: Task
+    id: finish
+    end: true
+

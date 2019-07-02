@@ -7,16 +7,29 @@ const colors = require('colors');
 const smViewer = require('./viewer/src');
 const pkjson = require('../package.json');
 const fs = require('fs');
+const yaml = require('js-yaml');
+
+
+const parseYaml = (filePath) => {
+    
+    if (!fs.existsSync(filePath)) {
+        throw new Error(`File '${filePath}' not found.`);            
+    }
+
+    if (filePath.toLowerCase().indexOf('.yaml') !== -1) {
+        return yaml.safeLoad(fs.readFileSync(filePath, 'utf8'));
+    } else {
+        return require(filePath);
+    }
+
+}
 
 program
     .version(pkjson.version)
     .command('run <definitionFile>')
     .action(function (definitionFile, cmd) {
         const filePath = path.resolve(definitionFile);
-        if (!fs.existsSync(filePath)) {
-            throw new Error(`File '${filePath}' not found.`);            
-        }
-        const statesDef = require(filePath);
+        const statesDef = parseYaml(filePath);
         const sm = new StateMachine(statesDef);
         sm.run();
     });
@@ -24,10 +37,7 @@ program
 program.command('view <definitionFile> [port]')
     .action(function (definitionFile, port) {
         const filePath = path.resolve(definitionFile);
-        if (!fs.existsSync(filePath)) {
-            throw new Error(`File '${filePath}' not found.`);            
-        }
-        const statesDef = require(filePath);
+        const statesDef = parseYaml(filePath);
         smViewer(statesDef, port);
     })
 
