@@ -1,5 +1,5 @@
 # About
-This project is aiming to helṕ those who need to make a sipmle and mantainable state/pipeline workflow. We are at the very begging steps yet, come help us to accomplish this.
+This project is aiming to helṕ those who need to make a simple and maintainable state/pipeline workflow. We are at the very begging steps yet, come help us to accomplish this.
 
 ## Summary
 1. Installation
