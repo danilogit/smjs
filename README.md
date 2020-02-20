@@ -1,10 +1,10 @@
-# smjs
-
+# About
+This project is aiming to helṕ those who need to make a sipmle and mantainable state/pipeline workflow. We are at the very begging steps yet, come help us to accomplish this.
 
 ## Summary
 1. Installation
 2. States Example
-3. Running
+3. Usage
  - CLI Command
  - Class usage
 4. Viewing the states flow
@@ -112,13 +112,13 @@ npm install @danilolima/smjs -g
 }
 ```
 
-### Running
+### Usage
 ```
 smjs run states.json
 ```
 ![ExampleConsole](examples/example-console.png)
 
-### Visualizing
+### View
 
 ```
 smjs view states.json
