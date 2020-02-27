@@ -1,3 +1,5 @@
+![Publish](https://github.com/danilogit/smjs/workflows/Publish/badge.svg)
+
 # About
 This project is aiming to help those who need to make a simple and maintainable state/pipeline workflow. We are at the very begging steps yet, come help us to accomplish this.
 
